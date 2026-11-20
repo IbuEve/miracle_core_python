@@ -1,5 +1,5 @@
 """
-core/miracle/posture/util.py
+miracle/posture/util.py
 
 姿勢・ビートを構成する送信パーツ。socket を握って「組み立て→送信」する。
 

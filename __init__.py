@@ -1,6 +1,6 @@
 """
-TactBase Miracle Module
-=======================
+Miracle Module
+==============
 Miracle関連のコマンド構築・通信処理を提供する。
 """
 

@@ -1,19 +1,32 @@
-# core/miracle
+# miracle
 
 MiracleHuman に Python からコマンドを送るためのライブラリ。ここには基本の使い方だけ書く。
 
 コマンドそのものの仕様（JSON の各項目、関節名、座標系など）は [docs/](./docs/README.md) を参照。
 
+## 構成
+
+| ファイル | 内容 |
+|---|---|
+| [TCPClient.py](./TCPClient.py) | `MiracleAsyncClient`：ControllerASync（21000 番）への非同期 TCP クライアント |
+| [CommandBuilder.py](./CommandBuilder.py) | `MiracleCommands`：各種コマンドの組み立て |
+| [AngleMotionBuilder.py](./AngleMotionBuilder.py) | `AngleMotionCommands`：`playthisanglemotion` の組み立て |
+| [BeatActionBuilder.py](./BeatActionBuilder.py) | `BeatActionCommands`：ビートジェスチャを 1 つの `playthisaction` に組み立て |
+| [GazeBehavior.py](./GazeBehavior.py) | `GazeBehavior`：頭と目の視線状態を生成 |
+| [hand_stack.py](./hand_stack.py) | `HandStack`：両手の出し入れの順序を管理（通信はしない） |
+| [posture/](./posture/__init__.py) | 腕・体・頭・目の姿勢とビートを組み立てて送信する |
+
+コマンドを組み立てるクラスは送信しない。送信は `MiracleAsyncClient`（`posture` は `Sender`）が行う。
+
 ## 1. import
 
-TactBase のルートをパスに通してから import する。
+このフォルダ（`miracle/`）の親ディレクトリをパスに通してから import する。
 
 ```python
 import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # exp/expXXX/foo.py から TactBase へ
+sys.path.insert(0, "path/to/parent_of_miracle")
 
-from core.miracle import MiracleAsyncClient, MiracleCommands, AngleMotionCommands
+from miracle import MiracleAsyncClient, MiracleCommands, AngleMotionCommands
 ```
 
 ## 2. 接続
@@ -86,11 +99,13 @@ JSON ファイルを送るときも同じ形で送る。
 
 ```python
 import json
+from pathlib import Path
+
 payload = json.loads(Path("motion.json").read_text(encoding="utf-8"))
 await client.send_json_command("playthisanglemotion", payload)
 ```
 
-Unity から書き出した JSON には、送らなくてよい内部参照の項目が入っている。それを除いて送る例は [exp/exp001/test_anglemotion.py](../../exp/exp001/test_anglemotion.py)。
+Unity から書き出した JSON には、送らなくてよい内部参照の項目が入っていることがあるので、必要に応じて取り除いてから送る。
 
 ## 6. アングルモーション（関節角を直接送る）
 
@@ -111,9 +126,3 @@ value は dict なので `send_json_command` で送る（ファイル内の docs
 
 視線・頭・手（`eye_controller` / `head_controller` / `right_hand_controller`）、表情（`set_face`）、感情、オブジェクト生成なども同じ形で送れる。
 一覧は [CommandBuilder.py](./CommandBuilder.py) を見る。
-
-## 使用例
-
-- [exp/exp002_talkMiracle/updown_command_sender.py](../../exp/exp002_talkMiracle/updown_command_sender.py)：`play_motion` と `play_this_action` を送る
-- [exp/exp005_intentionmotion/head_controller_test.py](../../exp/exp005_intentionmotion/head_controller_test.py)：入力した座標へ頭を向ける
-- [exp/exp001/angle_slider_gui.py](../../exp/exp001/angle_slider_gui.py)：スライダーで関節角を送る

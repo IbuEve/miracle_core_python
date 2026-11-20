@@ -1,5 +1,5 @@
 """
-core/miracle/posture/arm/base.py
+miracle/posture/arm/base.py
 
 姿勢（Posture）の抽象基底。役割分担:
   - base（ここ）  : 抽象表現。joints() を要求し、pose()（全姿勢共通）を提供する。

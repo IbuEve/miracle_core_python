@@ -1,5 +1,5 @@
 """
-core/miracle/posture/arm/side_posture.py
+miracle/posture/arm/side_posture.py
 
 side（画面を指す）姿勢。hand="right"|"left" で左右ミラー。
 

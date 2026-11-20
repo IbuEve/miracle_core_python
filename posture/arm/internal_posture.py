@@ -1,5 +1,5 @@
 """
-core/miracle/posture/arm/internal_posture.py
+miracle/posture/arm/internal_posture.py
 
 internal（手を自分＝胸の中心へ向ける）姿勢。hand="right"|"left" で左右ミラー。
 ビートは up→down→back の 3 フェーズ（FrontPosture/SidePosture と同じ構成）。

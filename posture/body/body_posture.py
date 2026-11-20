@@ -1,5 +1,5 @@
 """
-core/miracle/posture/body/body_posture.py
+miracle/posture/body/body_posture.py
 
 front/side（Bodyの向き）。BodyControllerのみを動かす。
 """

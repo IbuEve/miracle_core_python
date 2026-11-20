@@ -1,5 +1,5 @@
 """
-core/miracle/posture/arm/in_posture.py
+miracle/posture/arm/in_posture.py
 
 in（しまう）姿勢。hand="right"|"left" で左右ミラー。
 pose（tuck 位置へ戻す）だけを持ち、ビートは無し（up/down/back を実装しない）。

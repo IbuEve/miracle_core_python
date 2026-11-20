@@ -1,5 +1,5 @@
 """
-core/miracle/posture/arm/front_posture.py
+miracle/posture/arm/front_posture.py
 
 out（差し出し）姿勢。hand="right"|"left" で左右ミラー。
 

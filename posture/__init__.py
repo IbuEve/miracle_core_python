@@ -1,6 +1,6 @@
 """
-TactBase Miracle Posture Module
-===============================
+Miracle Posture Module
+======================
 姿勢（pose）と、その姿勢のビート（up/down/back フェーズ）を socket へ
 組み立て送信する Posture クラス階層。
 

@@ -1,5 +1,5 @@
 """
-core/miracle/posture/head/head_posture.py
+miracle/posture/head/head_posture.py
 
 front/shallow1/shallow2/side（headの向き）。HeadControllerのみを動かす。
 """

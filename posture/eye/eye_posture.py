@@ -1,5 +1,5 @@
 """
-core/miracle/posture/eye/eye_posture.py
+miracle/posture/eye/eye_posture.py
 
 front/shallow/side（eyeの向き）。EyeControllerのみを動かす。
 any（観客から目線をそらす動き）は Miracle 側のサッケード機能（set_saccade）に任せる。
